@@ -1,0 +1,3 @@
+Absolute paths in:
+python/detection_fast.py
+routes/play.js

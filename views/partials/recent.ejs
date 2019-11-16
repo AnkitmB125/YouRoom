@@ -1,0 +1,15 @@
+<script>
+    $(document).ready(function () {
+        $('.extra-options-button>a').click(function (ele) {
+            $(this).parent().next().toggle(100);
+        });
+    });
+</script>
+<div class="top-grids">
+    <div class="recommended-info">
+        <h3>Trending Videos</h3>
+    </div>
+    <% trendingVideos.forEach((item)=>{ %>
+        <%- include('partials/recommendedVideoPallete.ejs' , { item : item } ); %>
+    <% } ); %>
+</div>
