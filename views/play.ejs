@@ -13,8 +13,12 @@
 </head>
 
 <body>
+		<!-- <video width="320" height="240" controls>
+				<source src="../assets/<%= video['id'] %>.mp4" type="video/mp4">
+		</video>
+			   -->
 	<p id="bhoot" hidden><%= qs.start %></p>
-	
+	<p><%= video['isSum'] %></p>
 	<% include partials/navbar1.ejs %>
 	<% include partials/sidebar.ejs %>
 	<div class="myNewVideoContainer" style='margin-top: 40px;'>
@@ -43,6 +47,18 @@
 				<div class="volume" title="Set volume">
 					<span class="volumeBar"></span>
 				</div>
+				<% if(video['isSum']) { %>
+					<input type="button" class="btn btn-primary" data-toggle="modal" data-target="#vid_sum" style="margin-left: 120px; margin-top:8px;" value="Play Summarized video">
+				<% } else { %>
+				<form method="GET" action="">
+					<input type="text" value="sum" name="sum" >
+					<input type="submit" class="btn btn-primary"  style="margin-left: 120px; margin-top:8px;" value="Get Summarized video">
+
+				</form>
+				
+				<% } %>
+						
+					  <!-- </button> -->
 				<button class="btnFS " style="float:right" title="full screen"></button>
 				<button class="btnspeed " style="float:right" title="Video speed"><i class="fa fa-gear"></i></button>
 				<ul class="speedcnt">
@@ -53,6 +69,7 @@
 				</ul>
 				<button class="btnLight lighton " style="float:right" title="on/off light"><i
 						class="fa fa-lightbulb-o"></i></button>
+						
 			</div>
 			
 			<div class="bigplay" title="play the video"><i class="fa fa-play-circle-o"></i></div>
@@ -174,6 +191,33 @@
 		</div>
 
 		
+			  
+			  <!-- The Modal -->
+			  <div class="modal fade" id="vid_sum">
+				<div class="modal-dialog modal-lg">
+				  <div class="modal-content">
+			  
+					<!-- Modal Header -->
+					<div class="modal-header">
+					  <h4 class="modal-title">Summarized video</h4>
+					  <button type="button" class="close" data-dismiss="modal">&times;</button>
+					</div>
+			  
+					<!-- Modal body -->
+					<div class="modal-body">
+							<video width="640" height="480" controls>
+									<source src="../assets/<%= video['id'] %>_1.mp4" type="video/mp4">
+							</video>
+					</div>
+			  
+					<!-- Modal footer -->
+					<div class="modal-footer">
+					  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+					</div>
+			  
+				  </div>
+				</div>
+			  </div>
 		<!-- Bootstrap core JavaScript
     ================================================== -->
 		<!-- Placed at the end of the document so the pages load faster -->

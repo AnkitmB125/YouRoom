@@ -1,3 +1,8 @@
 Absolute paths in:
 python/detection_fast.py
 routes/play.js
+
+
+install these packages:
+imageio.plugins.ffmpeg.download()
+nltk.download('punkt')

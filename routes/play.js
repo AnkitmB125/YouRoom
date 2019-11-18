@@ -46,6 +46,17 @@ router.get('/:id', async (req, res, next) => {
                 console.log(keyword_text);
                 res.render('play.ejs', { videos: videos, video: video, user: req.user, qs: req.query, keyword_seek: null, keyword: null, detection_fast: keyword_fast, text_detection: keyword_text});
 
+            } else if (req.query.sum) {
+                console.log(req.query.sum + " aa gaya");
+                const pyprog = spawn('python', ["/home/ankitb/Documents/visa/python/video_sum.py",  "/home/ankitb/Documents/visa/assets/"+videos[0].id+".mp4", "/home/ankitb/Documents/visa/assets/"+videos[0].id+".srt"] );
+                // let v = await dbVideo.findOne({_id: mongoose.Types.ObjectId(req.params.id)});
+                // console.log(v["description"]);
+                let x = await dbVideo.updateOne({ _id: mongoose.Types.ObjectId(req.params.id) }, {"$set": {isSum: true}});
+                // console.log(x);
+                console.log(pyprog.stdout.toString());
+                console.log("Summarized video created and DB updated");
+                return res.redirect("http://localhost:3000/play/"+req.params.id);
+                res.render('play.ejs', { videos: videos, video: video, user: req.user, qs: req.query, keyword_seek: null, keyword: null, detection_fast: null, text_detection: null });
             }
             else {  
                 res.render('play.ejs', { videos: videos, video: video, user: req.user, qs: req.query, keyword_seek: null, keyword: null, detection_fast: null, text_detection: null });

@@ -77,6 +77,10 @@ const videoSchema = new mongoose.Schema({
     },
     length : {
         type : Number
+    },
+    isSum :{
+        type: Boolean,
+        default: false
     }
 });
 
